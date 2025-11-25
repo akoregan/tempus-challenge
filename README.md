@@ -15,6 +15,8 @@ Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a mean
 
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
 
+Only reports the first-ranked transcript according to the Ensembl VEP's pick parameter (ranking system [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick)). This summarizes data for the sake of simplicity. The results CSV therefore risks ignoring crucial transcript and regulatory feature consequences. 
+
 
 ```
 python variant_annotator.py <filename.tsv> <sample_name>
