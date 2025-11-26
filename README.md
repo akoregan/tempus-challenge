@@ -1,7 +1,7 @@
 # tempus-challenge
 
 ### Introduction 
-This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the table below.
+This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the Appendix below.
 
 
 ### Description
@@ -16,6 +16,17 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 
 
 ### Getting Started
+
+#### Install Ensembl VEP Docker Image
+
+Ensembl provides specific documentation for installing the ensemblorg/ensembl-vep image [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_download.html#docker). Navigate to these guidelines or follow the process outlined below.
+```
+# [1] download ensembl-vep docker image
+docker pull ensemblorg/ensembl-vep
+
+# [2] set up cache and fasta files; note that the VCF file specifies the GRCh37 assembly
+docker run -t -i -v $HOME/vep_data:/data ensemblorg/ensembl-vep INSTALL.pl -a cf -s homo_sapiens -y GRCh37
+```
 
 BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
 
