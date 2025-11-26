@@ -12,25 +12,24 @@ The VCF data feature two sample columns, one titled *normal* and the other, *vaf
 
 Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
-| CSV Column Name   | Description |
-| :-------------:   | :---------: |
-| CHROM             | Test        |
-| POS               | Test        |
-| REF               | Test        |
-| ALT               | Test        |
-| ALT-MINOR         | Test        |
-| DEPTH             | Test        |
-| PERC-REF          | Test        |
-| PERC-ALT          | Test        |
-| PERC-ALT-MINOR    | Test        |
-| GENE-NAME         | Test        |
-| GENE-ID           | Test        |
-| TRANCRIPT-ID      | Test        |
-| VARIANT-CLASS     | Test        |
-| TRANSCRIPT-BIOTYPE| Test        |
-| VARIATION-EFFECT  | Test        |
-| IMPACT-SCORE      | Test        |
-
+| CSV Column Name   | Description				                                    		   |
+| :-------------:   | :----------------------------------------------------------- |
+| CHROM             | chromosome      		                              				   |
+| POS               | start position on chromosome                        			   |
+| REF	              | reference allele identity        	                  			   |
+| ALT	              | alternative allele identity        			                     |    
+| ALT-MINOR         | minor allele identity (if present)      			               |
+| DEPTH	            | depth of sequencing       				                           |
+| PERC-REF          | frequency of reference allele as a percentage        	       |
+| PERC-ALT          | frequency of alternative allele as a percentage        	     |
+| PERC-ALT-MINOR    | frequency of minor allele as a percentage (if present)       |
+| GENE-SYMBOL       | HGNC gene symbol       					                             |
+| GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
+| TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
+| VARIANT-CLASS     | type of variation (i.e. SNV, duplication)        		         | 
+| TRANSCRIPT-BIOTYPE| biological classification of transcript     		             |
+| VARIATION-EFFECT  | consequence(s) of variation       			                     |
+| IMPACT-SCORE      | impact can be: HIGH, MEDIUM, LOW, or MODIFIER    	           |
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
 
 Only reports the first-ranked transcript according to the Ensembl VEP's pick parameter (ranking system [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick)). This summarizes data for the sake of simplicity. The results CSV therefore risks ignoring crucial transcript and regulatory feature consequences. 
