@@ -4,9 +4,10 @@
 This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the table below.
 
 The **run_docker_pipeline.sh** shell script contains three sections: 
-  [1] 
-  [2]
-  [3]
++ first, the VEP API is run locally on the input VCF file using a Docker container
++ second, BCFTools extracts relevant data and formats it into a TSV file 
++lastly, a python script reformats the TSV file, calculates allele frequencies and writes the annotated CSV file output
+
 Caveats
 
 BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
@@ -44,7 +45,6 @@ docker run -it \
   -v "$PWD/.vep":/opt/vep/.vep \
   ensemblorg/ensembl-vep \
   INSTALL.pl -a cf -s homo_sapiens -y GRCh37
-
 ```
 
 
