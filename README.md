@@ -4,9 +4,9 @@
 This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the table below.
 
 The **run_docker_pipeline.sh** shell script contains three sections: 
-+ first, the VEP API is run locally on the input VCF file using a Docker container
-+ second, BCFTools extracts relevant data and formats it into a TSV file 
-+lastly, a python script reformats the TSV file, calculates allele frequencies and writes the annotated CSV file output
+1. first, the VEP API is run locally on the input VCF file using a Docker container
+1. second, BCFTools extracts relevant data and formats it into a TSV file 
+1. lastly, a python script reformats the TSV file, calculates allele frequencies and writes the annotated CSV file output
 
 Caveats
 
