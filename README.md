@@ -1,9 +1,12 @@
 # tempus-challenge
 
-Introduction: This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. 
+### Introduction 
+This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the table below.
 
-the fields: depth of sequencing; reference (PERC-REF), alternative (PERC-ALT), and minor allele frequencies (PERC-ALT-MINOR); as well as the Ensembl VEP fields gene symbol (GENE-SYMBOL), type of variation (VARIATION-CLASS), effect of variation (), etc.
-
+The **run_docker_pipeline.sh** shell script contains three sections: 
+  [1] 
+  [2]
+  [3]
 Caveats
 
 BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
@@ -13,7 +16,7 @@ The VCF data feature two sample columns, one titled *normal* and the other, *vaf
 Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
 | CSV Column Name   | Description				                                    		   |
-| :-------------:   | :----------------------------------------------------------- |
+| :---------------- | :----------------------------------------------------------- |
 | CHROM             | chromosome      		                              				   |
 | POS               | start position on chromosome                        			   |
 | REF	              | reference allele identity        	                  			   |
