@@ -10,7 +10,7 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 1. second, BCFTools extracts relevant data and restructures it as a TSV file from downstream processing 
 1. lastly, a python script *write_variant_csv.py* reformats the TSV file, calculates allele frequencies, and writes the annotated CSV file output
 
-***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** scipt requires the user to specify which of these two samples is relevant for analysis. The outputs of both options are recorded in the results folder.
+***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy.
 
 ***Caveats*** This pipeline uses the VEP's *--pick* parameter for the sake of simplicity, reporting a single transcipt according to its [ranking system](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick). Consequently, the results may miss relevant transcipt and regulatory feature predictions, or may be modified according to the specific interests of users.
 
@@ -28,16 +28,15 @@ docker pull ensemblorg/ensembl-vep
 docker run -t -i -v $HOME/vep_data:/data ensemblorg/ensembl-vep INSTALL.pl -a cf -s homo_sapiens -y GRCh37
 ```
 
-BCFTools can be downloaded directly into a Conda (Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools```. Alternatively, utilize the ```.yml``` file in the *envs* folder to create an environment that includes BCFTools (and other dependencies).
+BCFTools can be downloaded directly into a Conda (Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools```. Alternatively, utilize the ```.yml``` file in the *envs* folder to create an environment that includes BCFTools (as well as other dependencies).
 
 
 #### Run the Shell Script
 
-Ensure that the input VCF file is located in the repository's root directory. From this directory, first ensure that **run_docker_pipeline.sh** is executable. Then, run the pipeline by passing the VCF input's basename and the sample name to the shell script as arguments: 
+Ensure that the input VCF file is located in the repository's root directory. From this directory, first ensure that **run_docker_pipeline.sh** is executable. Then, run the pipeline by passing the VCF input's basename to the shell script as its only argument: 
 ```
 # run the pipeline 
-./run_docker_pipeline.sh tempus_challenge_data.vcf normal # get annotation for sample name = normal
-./run_docker_pipeline.sh tempus_challenge_data.vcf vaf5 # get annotation for sample name = vaf5
+./run_docker_pipeline.sh tempus_challenge_data.vcf
 ```
 
 
