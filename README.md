@@ -16,20 +16,20 @@ Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a mean
 | :-------------:   | :---------: |
 | CHROM             | Test        |
 | POS               | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
-| CHROM             | Test        |
-| POS               | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
-| Gene Name         | Test        |
-| Gene ID           | Test        |
+| REF               | Test        |
+| ALT               | Test        |
+| ALT-MINOR         | Test        |
+| DEPTH             | Test        |
+| PERC-REF          | Test        |
+| PERC-ALT          | Test        |
+| PERC-ALT-MINOR    | Test        |
+| GENE-NAME         | Test        |
+| GENE-ID           | Test        |
+| TRANCRIPT-ID      | Test        |
+| VARIANT-CLASS     | Test        |
+| TRANSCRIPT-BIOTYPE| Test        |
+| VARIATION-EFFECT  | Test        |
+| IMPACT-SCORE      | Test        |
 
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
 
