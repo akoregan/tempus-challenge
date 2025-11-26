@@ -19,7 +19,7 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 
 #### Install Ensembl VEP Docker Image and BCFTools
 
-Ensembl provides specific documentation for installing the ensemblorg/ensembl-vep image [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_download.html#docker). Navigate to these guidelines or follow the process outlined below.
+Ensembl provides specific documentation for installing the ensemblorg/ensembl-vep image [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_download.html#docker). Navigate to these guidelines or follow the installation described below.
 ```
 # [1] download ensembl-vep docker image
 docker pull ensemblorg/ensembl-vep
@@ -28,12 +28,17 @@ docker pull ensemblorg/ensembl-vep
 docker run -t -i -v $HOME/vep_data:/data ensemblorg/ensembl-vep INSTALL.pl -a cf -s homo_sapiens -y GRCh37
 ```
 
-BCFTools can be downloaded directly into a Conda (Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools```. Alternatively, utilize the ```.yml``` file in the *envs* folder to create an environment that includes BCFTools.
+BCFTools can be downloaded directly into a Conda (Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools```. Alternatively, utilize the ```.yml``` file in the *envs* folder to create an environment that includes BCFTools (and other dependencies).
 
 
 #### Run the Shell Script
 
-Ensure that the input VCF file is located in the repository's root directory. From this directory, execute **run_docker_pipeline.sh** by passing the VCF input's basename and the sample name as arguments: ```./run_docker_pipeline.sh tempus_challenge_data.vcf normal``` or ```./run_docker_pipeline.sh tempus_challenge_data.vcf vaf5```.
+Ensure that the input VCF file is located in the repository's root directory. From this directory, first ensure that **run_docker_pipeline.sh** is executable. Then, run the pipeline by passing the VCF input's basename and the sample name to the shell script as arguments: 
+```
+# run the pipeline 
+./run_docker_pipeline.sh tempus_challenge_data.vcf normal # get annotation for sample name = normal
+./run_docker_pipeline.sh tempus_challenge_data.vcf vaf5 # get annotation for sample name = vaf5
+```
 
 
 ### Appendix
