@@ -13,6 +13,7 @@ The VCF data feature two sample columns, one titled *normal* and the other, *vaf
 Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
 | CSV Column Name               |
+| :--------------:              |
 | CSV Column Name | Description |
 | :-------------: | :---------: |
 | CHROM           | Test        |
