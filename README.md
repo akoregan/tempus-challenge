@@ -3,18 +3,12 @@
 ### Introduction 
 This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. A list of CSV columns and their descriptions are provided in the table below.
 
+
+### Description
 The **run_docker_pipeline.sh** shell script contains three sections: 
 1. first, the VEP API is run locally on the input VCF file using a Docker container
 1. second, BCFTools extracts relevant data and formats it into a TSV file 
 1. lastly, a python script reformats the TSV file, calculates allele frequencies and writes the annotated CSV file output
-
-Caveats
-
-BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
-
-The VCF data feature two sample columns, one titled *normal* and the other, *vaf5*. The genotypes in each of these columns are unfailingly the same. And because the depth and other data formats are often equivalent, the samples are likely the same one having undergone distinct pre-processing. To avoid recording redundant data, I have provided the user with the option to analyze the data labeled as *normal* or *vaf5* via an input parameter to the CLI. Both outputs recorded in the results folder.
-
-Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
 | CSV Column Name   | Description				                                    		   |
 | :---------------- | :----------------------------------------------------------- |
@@ -34,6 +28,19 @@ Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a mean
 | TRANSCRIPT-BIOTYPE| biological classification of transcript     		             |
 | VARIATION-EFFECT  | consequence(s) of variation       			                     |
 | IMPACT-SCORE      | impact can be: HIGH, MEDIUM, LOW, or MODIFIER    	           |
+
+
+*Note that* the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** requires the user to specify which of these two samples is relevant for analysis. The outputs of both options are recorded in the results folder.
+
+*Caveats:*
+
+### Getting Started
+
+BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
+
+The VCF data feature two sample columns, one titled *normal* and the other, *vaf5*. The genotypes in each of these columns are unfailingly the same. And because the depth and other data formats are often equivalent, the samples are likely the same one having undergone distinct pre-processing. To avoid recording redundant data, I have provided the user with the option to analyze the data labeled as *normal* or *vaf5* via an input parameter to the CLI. Both outputs recorded in the results folder.
+
+Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
 
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
