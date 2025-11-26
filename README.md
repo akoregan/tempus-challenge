@@ -12,18 +12,24 @@ The VCF data feature two sample columns, one titled *normal* and the other, *vaf
 
 Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
-| CSV Column Name               |
-| :--------------:              |
-| CSV Column Name | Description |
-| :-------------: | :---------: |
-| CHROM           | Test        |
-| POS             | Test        |
-| Gene Name       | Test        |
-| Gene ID         | Test        |
-| Gene Name       | Test        |
-| Gene ID         | Test        |
-| Gene Name       | Test        |
-| Gene ID         | Test        |
+| CSV Column Name   | Description |
+| :-------------:   | :---------: |
+| CHROM             | Test        |
+| POS               | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
+| CHROM             | Test        |
+| POS               | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
+| Gene Name         | Test        |
+| Gene ID           | Test        |
 
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
 
