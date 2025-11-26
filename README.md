@@ -10,26 +10,6 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 1. second, BCFTools extracts relevant data and formats it into a TSV file 
 1. lastly, a python script reformats the TSV file, calculates allele frequencies and writes the annotated CSV file output
 
-| CSV Column Name   | Description				                                    		   |
-| :---------------- | :----------------------------------------------------------- |
-| CHROM             | chromosome      		                              				   |
-| POS               | start position on chromosome                        			   |
-| REF	              | reference allele identity        	                  			   |
-| ALT	              | alternative allele identity        			                     |    
-| ALT-MINOR         | minor allele identity (if present)      			               |
-| DEPTH	            | depth of sequencing       				                           |
-| PERC-REF          | frequency of reference allele as a percentage        	       |
-| PERC-ALT          | frequency of alternative allele as a percentage        	     |
-| PERC-ALT-MINOR    | frequency of minor allele as a percentage (if present)       |
-| GENE-SYMBOL       | HGNC gene symbol       					                             |
-| GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
-| TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
-| VARIANT-CLASS     | type of variation (i.e. SNV, duplication)        		         | 
-| TRANSCRIPT-BIOTYPE| biological classification of transcript     		             |
-| VARIATION-EFFECT  | consequence(s) of variation       			                     |
-| IMPACT-SCORE      | impact can be: HIGH, MEDIUM, LOW, or MODIFIER    	           |
-
-
 *Note that* the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** requires the user to specify which of these two samples is relevant for analysis. The outputs of both options are recorded in the results folder.
 
 *Caveats:*
@@ -58,3 +38,24 @@ docker run -it \
 ```
 python variant_annotator.py <filename.tsv> <sample_name>
 ```
+
+### Appendix
+
+| CSV Column Name   | Description				                                    		   |
+| :---------------- | :----------------------------------------------------------- |
+| CHROM             | chromosome      		                              				   |
+| POS               | start position on chromosome                        			   |
+| REF	              | reference allele identity        	                  			   |
+| ALT	              | alternative allele identity        			                     |    
+| ALT-MINOR         | minor allele identity (if present)      			               |
+| DEPTH	            | depth of sequencing       				                           |
+| PERC-REF          | frequency of reference allele as a percentage        	       |
+| PERC-ALT          | frequency of alternative allele as a percentage        	     |
+| PERC-ALT-MINOR    | frequency of minor allele as a percentage (if present)       |
+| GENE-SYMBOL       | HGNC gene symbol       					                             |
+| GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
+| TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
+| VARIANT-CLASS     | type of variation (i.e. SNV, duplication)        		         | 
+| TRANSCRIPT-BIOTYPE| biological classification of transcript     		             |
+| VARIATION-EFFECT  | consequence(s) of variation       			                     |
+| IMPACT-SCORE      | impact can be: HIGH, MEDIUM, LOW, or MODIFIER    	           |
