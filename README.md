@@ -17,7 +17,7 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 
 ### Getting Started
 
-#### Install Ensembl VEP Docker Image
+#### Install Ensembl VEP Docker Image and BCFTools
 
 Ensembl provides specific documentation for installing the ensemblorg/ensembl-vep image [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_download.html#docker). Navigate to these guidelines or follow the process outlined below.
 ```
@@ -28,26 +28,13 @@ docker pull ensemblorg/ensembl-vep
 docker run -t -i -v $HOME/vep_data:/data ensemblorg/ensembl-vep INSTALL.pl -a cf -s homo_sapiens -y GRCh37
 ```
 
-BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
-
-The VCF data feature two sample columns, one titled *normal* and the other, *vaf5*. The genotypes in each of these columns are unfailingly the same. And because the depth and other data formats are often equivalent, the samples are likely the same one having undergone distinct pre-processing. To avoid recording redundant data, I have provided the user with the option to analyze the data labeled as *normal* or *vaf5* via an input parameter to the CLI. Both outputs recorded in the results folder.
-
-Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
+BCFTools can be downloaded directly into a Conda (Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools```. Alternatively, utilize the ```.yml``` file in the *envs* folder to create an environment that includes BCFTools.
 
 
-Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
+#### Run the Shell Script
 
-```
-docker run -it \
-  -v "$PWD/.vep":/opt/vep/.vep \
-  ensemblorg/ensembl-vep \
-  INSTALL.pl -a cf -s homo_sapiens -y GRCh37
-```
+Ensure that the input VCF file is located in the repository's root directory. From this directory, execute **run_docker_pipeline.sh** by passing the VCF input's basename and the sample name as arguments: ```./run_docker_pipeline.sh tempus_challenge_data.vcf normal``` or ```./run_docker_pipeline.sh tempus_challenge_data.vcf vaf5```.
 
-
-```
-python variant_annotator.py <filename.tsv> <sample_name>
-```
 
 ### Appendix
 
