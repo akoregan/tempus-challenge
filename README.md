@@ -1,6 +1,10 @@
 # tempus-challenge
 
-Introduction: This repository extracts variant information from a provided VCF file and implements the Ensembl's VEP API to determine consequences of the alternate allele, recording the output in CSV format.
+Introduction: This repository describes a variant annotation tool. To execute the program use **run_docker_pipeline.sh** to produce a CSV file output, which includes each variant's sequencing depth, allele frequencies (as percentages), and VEP annotations. 
+
+the fields: depth of sequencing; reference (PERC-REF), alternative (PERC-ALT), and minor allele frequencies (PERC-ALT-MINOR); as well as the Ensembl VEP fields gene symbol (GENE-SYMBOL), type of variation (VARIATION-CLASS), effect of variation (), etc.
+
+Caveats
 
 BCFTools and NextFlow can both be downloaded directly into a Conda (or Mamba) environment from the Bioconda channel: ```conda install -c bioconda -c conda-forge bcftools nextflow```.
 
@@ -8,10 +12,16 @@ The VCF data feature two sample columns, one titled *normal* and the other, *vaf
 
 Output: The impact (**HIGH, MEDIUM, LOW, MODIFIER**) has been provided as a means of filtering by severity.
 
-| CSV Parameter Name | Description |
-| :----------------: | :---------: |
-| Gene Name          | Test        |
-| Gene ID            | Test        |
+| CSV Column Name | Description |
+| :-------------: | :---------: |
+| CHROM           | Test        |
+| POS             | Test        |
+| Gene Name       | Test        |
+| Gene ID         | Test        |
+| Gene Name       | Test        |
+| Gene ID         | Test        |
+| Gene Name       | Test        |
+| Gene ID         | Test        |
 
 Getting Started: This program can be run from the command-line as a shell script. Relevant VCF format data are extracted using the bcftools ```toolkit```. Downstream formatting and API calls are executed in python. 
 
