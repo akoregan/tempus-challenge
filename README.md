@@ -1,13 +1,13 @@
 # tempus-challenge
 
 ### Introduction 
-This repository describes a variant annotation tool by accessing VCF input data and processing using Ensembl's VEP API, BCFTools, and a custom python pipeline. To execute the program use **run_docker_pipeline.sh**, which will produce a CSV file output including each variant's sequencing depth, percentages rads, and VEP annotations. A list of CSV columns and their descriptions are provided in the Appendix below. 
+This repository describes a variant annotation tool by accessing VCF input data and processing it using Ensembl's VEP API, BCFTools, and a custom python script. To execute the program use **run_docker_pipeline.sh**, which will produce a CSV file output including each variant's sequencing depth, percentage reads, and VEP annotations. A list of CSV columns and their descriptions is provided in the Appendix below. 
 
 ### Description
 The **run_docker_pipeline.sh** shell script contains three sections: 
 1. First, the VEP annotation runs locally inside a Docker container using a mounted VEP cache. Using a local cache significantly improves performance by avoiding thousands of remote requests to Ensembl servers.
 1. Second, BCFTools extracts relevant data fields and restructures it as a TSV file for downstream processing.
-1. Lastly, the python script *write_variant_csv.py* reformats the TSV file, calculates percentage reads, and writes the annotated data to a CSV file.
+1. Last, the python script *write_variant_csv.py* reformats the TSV file, calculates percentage reads, and writes the annotated data to a CSV file.
 
 ***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy. It is therefore **not appropriate to calculate the minor allele frequency**, as this metric refers to a population-level calculation. The present VCF file reveals that allele frequencies (*INFO=AF*) merely reflect the sample's genotype.
 
@@ -46,12 +46,12 @@ Ensure that the input VCF file is located in the repository's root directory. Fr
 | CHROM             | chromosome      		                              				   |
 | POS               | start position on chromosome                        			   |
 | REF	              | reference allele identity        	                  			   |
-| ALT	              | alternative allele identity        			                     |    
-| ALT-MINOR         | minor allele identity (if present)      			               |
+| ALT-A             | alternative allele identity        			                     |    
+| ALT-B             | minor allele identity (if present)      			               |
 | DEPTH	            | depth of sequencing       				                           |
 | PERC-REF          | frequency of reference allele as a percentage        	       |
-| PERC-ALT          | frequency of alternative allele as a percentage        	     |
-| PERC-ALT-MINOR    | frequency of minor allele as a percentage (if present)       |
+| PERC-ALT-A        | frequency of alternative allele as a percentage        	     |
+| PERC-ALT-B        | frequency of minor allele as a percentage (if present)       |
 | GENE-SYMBOL       | HGNC gene symbol       					                             |
 | GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
 | TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
