@@ -53,10 +53,10 @@ for SAMPLE in $(bcftools query -l "./temp/${VEP_OUTPUT_BASENAME}"); do
     # [3] process with python
     python ./python/write_variant_csv.py "$BCF_OUTPUT_FILEPATH" "$SAMPLE"
 
-    # rm "$BCF_OUTPUT_FILEPATH"
+    rm "$BCF_OUTPUT_FILEPATH"
 done
 
 echo "...annotation completed!"
 
-# rm "./temp/${VEP_OUTPUT_BASENAME}"
-# rm "./temp/${VEP_OUTPUT_BASENAME}_summary.html"
+rm "./temp/${VEP_OUTPUT_BASENAME}"
+rm "./temp/${VEP_OUTPUT_BASENAME}_summary.html"
