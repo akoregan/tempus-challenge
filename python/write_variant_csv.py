@@ -37,8 +37,8 @@ col_mapper = {
     f"[6]{vcf_sample_name}:GT"  :   "GENOTYPE",
     f"[7]{vcf_sample_name}:DP"  :   "DEPTH",
     f"[8]{vcf_sample_name}:RO"  :   "COUNT-REF",
-    f"[9]{vcf_sample_name}:AO"  :   "COUNT-ALT",
-    f"[10]{vcf_sample_name}:AO" :   "COUNT-ALT-MINOR",
+    f"[9]{vcf_sample_name}:AO"  :   "COUNT-ALT-A",
+    f"[10]{vcf_sample_name}:AO" :   "COUNT-ALT-B",
     "[11]SYMBOL"                :   "GENE-SYMBOL",
     "[12]Gene"                  :   "GENE-ID",
     "[13]Feature"               :   "TRANSCRIPT-ID",
@@ -60,11 +60,11 @@ for item in ["TRANSCRIPT-BIOTYPE", "VARIATION-EFFECT", "VARIANT-CLASS"] :
 
 # [3] use count columns to calculate percentage reads
 
-numeric_cols = ["POS", "DEPTH", "COUNT-REF", "COUNT-ALT", "COUNT-ALT-MINOR"]
+numeric_cols = ["POS", "DEPTH", "COUNT-REF", "COUNT-ALT-A", "COUNT-ALT-B"]
 variant_df[numeric_cols] = variant_df[numeric_cols].apply(pd.to_numeric, errors="coerce")
 variant_df.insert (10, "PERC-REF", (100 * variant_df["COUNT-REF"]/variant_df["DEPTH"]).round(2) )
-variant_df.insert (11, "PERC-ALT", (100 * variant_df["COUNT-ALT"]/variant_df["DEPTH"]).round(2) )
-variant_df.insert(12, "PERC-ALT-MINOR", (100 * variant_df["COUNT-ALT-MINOR"] / variant_df["DEPTH"]).round(2))
+variant_df.insert (11, "PERC-ALT", (100 * variant_df["COUNT-ALT-A"]/variant_df["DEPTH"]).round(2) )
+variant_df.insert(12, "PERC-ALT-MINOR", (100 * variant_df["COUNT-ALT-B"] / variant_df["DEPTH"]).round(2))
 
 # [4] save dataframe as csv to results folder
 
