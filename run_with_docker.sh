@@ -50,7 +50,7 @@ for SAMPLE in $(bcftools query -l "./temp/${VEP_OUTPUT_BASENAME}"); do
         -f '%CHROM\t%POS\t%REF\t%ALT{0}\t%ALT{1}[\t%GT\t%DP\t%RO\t%AO{0}\t%AO{1}]\t%SYMBOL\t%Gene\t%Feature\t%VARIANT_CLASS\t%BIOTYPE\t%Consequence\t%IMPACT\n' \
         > "$BCF_OUTPUT_FILEPATH"
 
-    # [3] process with python
+# [3] process with python
     python ./python/write_variant_csv.py "$BCF_OUTPUT_FILEPATH" "$SAMPLE"
 
     rm "$BCF_OUTPUT_FILEPATH"
