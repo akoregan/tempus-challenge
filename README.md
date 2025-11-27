@@ -7,7 +7,7 @@ This repository describes a variant annotation tool by accessing VCF input data 
 The **run_docker_pipeline.sh** shell script contains three sections: 
 1. First, the VEP annotation runs locally inside a Docker container using a mounted VEP cache. Using a local cache significantly improves performance by avoiding thousands of remote requests to Ensembl servers.
 1. Second, BCFTools extracts relevant data fields and restructures it as a TSV file for downstream processing.
-1. Lastly, a python script *write_variant_csv.py* reformats the TSV file, calculates percentage reads, and writes the annotated CSV file output
+1. Lastly, the python script *write_variant_csv.py* reformats the TSV file, calculates percentage reads, and writes the annotated data to a CSV file.
 
 ***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy. It is therefore **not appropriate to calculate the minor allele frequency**, as this metric refers to a population-level calculation. The present VCF file reveals that allele frequencies (*INFO=AF*) merely reflect the sample's genotype.
 
