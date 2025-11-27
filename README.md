@@ -8,11 +8,11 @@ This repository describes a variant annotation tool. To execute the program use 
 The **run_docker_pipeline.sh** shell script contains three sections: 
 1. first, the VEP API is run locally on the input VCF file using a Docker container
 1. second, BCFTools extracts relevant data and restructures it as a TSV file from downstream processing 
-1. lastly, a python script *write_variant_csv.py* reformats the TSV file, calculates allele frequencies, and writes the annotated CSV file output
+1. lastly, a python script *write_variant_csv.py* reformats the TSV file, calculates percentage reads, and writes the annotated CSV file output
 
-***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy.
+***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy. It is therefore **not appropriate to calculate the minor allele frequency**, as this metric refers to a population-level calculation. The present VCF file reveals that allele frequencies (*INFO=AF*) merely reflect the sample's genotype.
 
-***Caveats*** This pipeline uses the VEP's *--pick* parameter for the sake of simplicity, reporting a single transcipt according to its [ranking system](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick). Consequently, the results may miss relevant transcipt and regulatory feature predictions, or may be modified according to the specific interests of users.
+***Caveats*** This pipeline uses the VEP's *--pick* parameter for the sake of simplicity, reporting a single transcipt according to its [ranking system](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick). Consequently, the results may miss relevant transcipt and regulatory feature predictions, or may be modified according to the specific interests of users. 
 
 
 ### Getting Started
