@@ -63,8 +63,8 @@ for item in ["TRANSCRIPT-BIOTYPE", "VARIATION-EFFECT", "VARIANT-CLASS"] :
 numeric_cols = ["POS", "DEPTH", "COUNT-REF", "COUNT-ALT-A", "COUNT-ALT-B"]
 variant_df[numeric_cols] = variant_df[numeric_cols].apply(pd.to_numeric, errors="coerce")
 variant_df.insert (10, "PERC-REF", (100 * variant_df["COUNT-REF"]/variant_df["DEPTH"]).round(2) )
-variant_df.insert (11, "PERC-ALT", (100 * variant_df["COUNT-ALT-A"]/variant_df["DEPTH"]).round(2) )
-variant_df.insert(12, "PERC-ALT-MINOR", (100 * variant_df["COUNT-ALT-B"] / variant_df["DEPTH"]).round(2))
+variant_df.insert (11, "PERC-ALT-A", (100 * variant_df["COUNT-ALT-A"]/variant_df["DEPTH"]).round(2) )
+variant_df.insert(12, "PERC-ALT-B", (100 * variant_df["COUNT-ALT-B"] / variant_df["DEPTH"]).round(2))
 
 # [4] save dataframe as csv to results folder
 
