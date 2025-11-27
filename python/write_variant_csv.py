@@ -60,7 +60,7 @@ for item in ["TRANSCRIPT-BIOTYPE", "VARIATION-EFFECT", "VARIANT-CLASS"] :
 
 # [3] use count columns to calculate percentage reads
 
-numeric_cols = ["CHROM", "POS", "DEPTH", "COUNT-REF", "COUNT-ALT", "COUNT-ALT-MINOR"]
+numeric_cols = ["POS", "DEPTH", "COUNT-REF", "COUNT-ALT", "COUNT-ALT-MINOR"]
 variant_df[numeric_cols] = variant_df[numeric_cols].apply(pd.to_numeric, errors="coerce")
 variant_df.insert (10, "PERC-REF", (100 * variant_df["COUNT-REF"]/variant_df["DEPTH"]).round(2) )
 variant_df.insert (11, "PERC-ALT", (100 * variant_df["COUNT-ALT"]/variant_df["DEPTH"]).round(2) )
