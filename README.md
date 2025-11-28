@@ -55,7 +55,7 @@ Ensure that the input VCF file is located in the repository's root directory. Fr
 | COUNT-ALT-B       | number of second alternate allele reads                      |
 | PERC-REF          | percentage of reads identified as the reference allele     	 |
 | PERC-ALT-A        | percentage of reads identified as the first alternate allele |
-| PERC-ALT-B        | percentage of reads identified as the secind alternate allele|
+| PERC-ALT-B        | percentage of reads identified as the second alternate allele|
 | GENE-SYMBOL       | HGNC gene symbol       					                             |
 | GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
 | TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
