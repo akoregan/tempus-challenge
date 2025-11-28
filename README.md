@@ -48,10 +48,14 @@ Ensure that the input VCF file is located in the repository's root directory. Fr
 | REF	              | reference allele identity        	                  			   |
 | ALT-A             | alternative allele identity        			                     |    
 | ALT-B             | minor allele identity (if present)      			               |
+| GENOTYPE          | organism genotype where each number refers to an allele 		 |
 | DEPTH	            | depth of sequencing       				                           |
-| PERC-REF          | frequency of reference allele as a percentage        	       |
-| PERC-ALT-A        | frequency of alternative allele as a percentage        	     |
-| PERC-ALT-B        | frequency of minor allele as a percentage (if present)       |
+| COUNT-REF         | number reference allele reads        	                       |
+| COUNT-ALT-A       | number of first alternate allele reads       	               |
+| COUNT-ALT-B       | number of second alternate allele reads                      |
+| PERC-REF          | percentage of reads identified as the reference allele     	 |
+| PERC-ALT-A        | percentage of reads identified as the first alternate allele |
+| PERC-ALT-B        | percentage of reads identified as the secind alternate allele|
 | GENE-SYMBOL       | HGNC gene symbol       					                             |
 | GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
 | TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
