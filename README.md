@@ -11,7 +11,7 @@ The **run_docker_pipeline.sh** shell script contains three sections:
 
 ***Note*** that the provided VCF file features two sample columns: *normal* and *vaf5*. Their similarity (consistent genotypes, equivalent sequencing depth, etc.) suggests they originate from a common source and have been processed differently. The **run_docker_pipeline.sh** script writes a distinct CSV annotation file for each of these sample IDs because of their likely redundancy. It is therefore **not appropriate to calculate the minor allele frequency**, as this metric refers to a population-level calculation. The present VCF file reveals that allele frequencies (*INFO=AF*) merely reflect the sample's genotype.
 
-***Caveats*** This pipeline uses the VEP's *--pick* parameter for the sake of simplicity, reporting a single transcipt according to its [ranking system](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick). Consequently, the results may miss relevant transcipt and regulatory feature predictions as well as differences across multiple alternate alleles, or it may be modified according to the specific interests of users. 
+***Caveats*** This pipeline uses the VEP's *--pick* parameter for the sake of simplicity, reporting a single transcipt according to its [ranking system](https://useast.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick). Consequently, the results may miss relevant transcipt and regulatory feature predictions as well as differences across multiple alternate alleles, or it may be modified according to the specific interests of the user. 
 
 
 ### Getting Started
@@ -41,25 +41,25 @@ Ensure that the input VCF file is located in the repository's root directory. Fr
 
 ### Appendix
 
-| CSV Column Name   | Description				                                    		   |
-| :---------------- | :----------------------------------------------------------- |
-| CHROM             | chromosome      		                              				   |
-| POS               | start position on chromosome                        			   |
-| REF	              | reference allele identity        	                  			   |
-| ALT-A             | alternative allele identity        			                     |    
-| ALT-B             | minor allele identity (if present)      			               |
-| GENOTYPE          | organism genotype where each number refers to an allele 		 |
-| DEPTH	            | depth of sequencing       				                           |
-| COUNT-REF         | number reference allele reads        	                       |
-| COUNT-ALT-A       | number of first alternate allele reads       	               |
-| COUNT-ALT-B       | number of second alternate allele reads                      |
-| PERC-REF          | percentage of reads identified as the reference allele     	 |
-| PERC-ALT-A        | percentage of reads identified as the first alternate allele |
-| PERC-ALT-B        | percentage of reads identified as the second alternate allele|
-| GENE-SYMBOL       | HGNC gene symbol       					                             |
-| GENE-ID           | Ensembl stable gene identifier (prefix: ENSG)        	       |
-| TRANSCRIPT-ID     | Ensembl stable transcript identifier (prefix: ENST)          |
-| VARIANT-CLASS     | type of variation (i.e. SNV, duplication)        		         | 
-| TRANSCRIPT-BIOTYPE| biological classification of transcript     		             |
-| VARIATION-EFFECT  | consequence(s) of variation       			                     |
-| IMPACT-SCORE      | impact can be: HIGH, MEDIUM, LOW, or MODIFIER    	           |
+| CSV Column Name   | Description				                                    		                           |
+| :---------------- | :------------------------------------------------------------------------------------|
+| CHROM             | Chromosomal origin of the variant (e.g., chr1, chrX)      		                       |
+| POS               | Genomic coordinate marking the first base position where the variant occurs          |
+| REF	              | Nucleotide base(s) observed in the reference genome at the position of the variant   |
+| ALT-A             | First alternate allele, always present        			                                 |    
+| ALT-B             | Second alternate allele, if present      			                                       |
+| GENOTYPE          | Triploid sample genotype, where each number (0, 1, or 2) specifies an allele 		     |
+| DEPTH	            | Sequencing depth at the variant locus       				                                 |
+| COUNT-REF         | Number of reads that match the reference allele        	                             |
+| COUNT-ALT-A       | Number of reads that match the first alternate allele, always present       	       |
+| COUNT-ALT-B       | Number of reads that match the second alternate allele, if present                   |
+| PERC-REF          | Percentage of total reads that match the reference allele                            |
+| PERC-ALT-A        | Percentage of total reads that match the first alternate allele, always present      |  
+| PERC-ALT-B        | Percentage of total reads that match the second alternate allele, if present         |
+| GENE-SYMBOL       | HGNC gene symbol associated with first-choice transcript					                   |
+| GENE-ID           | Ensembl gene identifier (prefix: ENSG) associated with first-choice transcript       |
+| TRANSCRIPT-ID     | Ensembl transcript identifier (prefix: ENST) associated with first-choice transcript |
+| VARIANT-CLASS     | Broad variant category describing the mutation type (e.g., SNV, insertion)        	 | 
+| TRANSCRIPT-BIOTYPE| Transcript category (e.g., protein-coding, lncRNA, pseudogene)     		               |
+| VARIATION-EFFECT  | Predicted consequence(s) of observed variation       			                           |
+| IMPACT-SCORE      | Severity rating assigned to VARIATION-EFFECT (HIGH, MEDIUM, LOW, or MODIFIER)    	   |
